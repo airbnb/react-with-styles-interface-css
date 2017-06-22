@@ -4,7 +4,7 @@ import globalCache from 'global-cache';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
 import shared from '../../shared';
-import CSSInterface from 'react-with-styles-interface-css';
+import CSSInterface from '../../interface';
 import getClassName from '../getClassName';
 
 const globalKey = 'reactWithStylesInterfaceCSS';

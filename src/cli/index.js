@@ -1,14 +1,15 @@
-  // const format = new CleanCSS({
-  //   level: 0,
-  //   format: 'beautify',
-  //   inline: ['none'],
-  // });
-  // Object.entries(css).forEach(([componentName, componentCss]) => {
-  //   const {styles: formattedCss} = format.minify(componentCss);
-  //   writeFile(path.join(dirName, `${componentName}.css`), formattedCss, (err) => {
-  //     if (err) throw err;
-  //   });
-  // });
-// }).catch((err) => {
-  // console.error(err);
-// });
+import { writeFile } from 'fs';
+import { resolve } from 'path';
+import compileCSS from '../compile';
+
+const entryPointFileName = process.argv[2];
+const CSS = compileCSS(entryPointFileName);
+const format = new CleanCSS({
+  level: 0,
+  format: 'beautify',
+  inline: ['none'],
+});
+const { styles: formattedCSS } = format.minify(CSS);
+writeFile(resolve(stylesheet.css), formattedCSS, (err) => {
+  if (err) throw err;
+});

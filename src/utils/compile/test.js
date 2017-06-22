@@ -1,4 +1,17 @@
 import { expect } from 'chai';
+import globalCache from 'global-cache';
+import values from 'object.values';
+import ReactDOM from 'react-dom';
+import CSSInterface from 'react-with-styles-interface-css';
+
+import {
+  getCSS,
+  prepareCompilationEnvironment,
+  cleanupCompilationEnvironment,
+  globalKey,
+  defaultGlobalValue,
+  MAX_SPECIFICITY,
+} from './index';
 
 describe('getCSS', () => {
   test('Return CSS', () => {
@@ -9,63 +22,96 @@ describe('getCSS', () => {
         position: 'fixed',
       },
     };
-    const CSS = getCSS(stylesObject);
-    const selectors = '...';
-    expect(CSS).to.equal(`.primary{color:'red';font-size:'1rem';position:'fixed';}`);
+    globalCache.set(globalKey, defaultGlobalValue);
+    getCSS(stylesObject);
+    const { CSS } = globalCache.get(globalKey);
+
+    // Check all specifiers exist
+    for (let i = 1; i <= MAX_SPECIFICITY; i++) {
+      Object.keys(stylesObject).forEach((styleName) => {
+        expect(CSS.includes(`.${styleName}_${i}`.repeat(i))).to.equal(true);
+      });
+    }
+
+    // Check all CSS values exist
+    values(values(stylesObject)).forEach((CSSValue) => {
+      expect(CSS.includes(CSSValue));
+    });
   });
 });
 
-describe('prepareEnvironmentForCompilation', () => {
-  afterEach(cleanup);
+describe('prepareCompilationEnvironment', () => {
+  afterEach(cleanupCompilationEnvironment);
 
   test('`window` is globally available', () => {
-    prepare();
-    // console.log('window', global.window);
-    // expect(global.window).to.exist;
+    prepareCompilationEnvironment();
+    expect(global.window).to.not.be.undefined;
   });
 
   test('`document` is globally available', () => {
-    // prepare();
-    // console.log('window', global.window);
-    // console.log('doc', global.document);
+    prepareCompilationEnvironment();
+    expect(global.document).to.not.be.undefined;
   });
 
   test('Global state is set', () => {
-    // prepare();
+    prepareCompilationEnvironment();
     const globalValue = globalCache.get(globalKey);
     expect(globalValue).to.equal(defaultGlobalValue);
   });
 
-  test('ReactDOM.render is modified when ReactDOM exists', () => {
-    try {
-      const ReactDOM = require('react-dom');
-      expect(ReactDOM.render.name).to.equal('noopRender');
-    } catch (err) {}
+  test('ReactDOM.render is changed when ReactDOM exists', () => {
+    prepareCompilationEnvironment();
+    expect(ReactDOM.render.name).to.equal('noopReactDOMRender');
+  });
+
+  test('CSSInterface.create is changed', () => {
+    prepareCompilationEnvironment();
+    expect(CSSInterface.create.name).to.equal('getCSS');
   });
 });
 
 describe('cleanupCompilationEnvironment', () => {
-  test('`window` is restored', () => {
+  test.skip('`window` is restored', () => {
+    const oldWindow = {};
+    global.window = oldWindow;
+    prepareCompilationEnvironment();
+    cleanupCompilationEnvironment();
+    expect(global.window).to.equal(oldWindow);
   });
 
-  test('`document` is restored', () => {
+  test.skip('`document` is restored', () => {
+    const oldDocument = {};
+    console.log('huh', oldDocument);
+    console.log("hmmmm", global.document);
+    global.document = oldDocument;
+    global.document = 'potatop';
+    console.log('well', global.document);
+    delete global.document;
+    console.log('hahaha', global.document);
+    prepareCompilationEnvironment();
+    cleanupCompilationEnvironment();
+    expect(global.document).to.equal(oldDocument);
   });
 
-  test('Global state is restored', () => {
-    const oldGlobalState = globalCache.get(globalKey);
-    prepare();
-    cleanup();
-    const currentGlobalState = globalCache.get(globalKey);
-    expect(currentGlobalState).to.equal(oldGlobalState);
+  test.skip('Global state is restored', () => {
+    const oldGlobalState = {};
+    globalCache.set(globalKey, oldGlobalState);
+    prepareCompilationEnvironment();
+    cleanupCompilationEnvironment();
+    expect(globalCache.get(globalKey)).to.equal(oldGlobalState);
   });
 
-  test.skip('ReactDOM.render is restored when ReactDOM exists', () => {
-    try {
-      const ReactDOM = require('react-dom');
-      const oldReactDOMRenderName = ReactDOM.render.name;
-      prepare();
-      cleanup();
-      expect(ReactDOM.render.name).to.equal(oldReactDOMRenderName);
-    } catch (err) {}
+  test('ReactDOM.render is restored when ReactDOM exists', () => {
+    const { render: ReactDOMRender } = ReactDOM;
+    prepareCompilationEnvironment();
+    cleanupCompilationEnvironment();
+    expect(ReactDOM.render).to.equal(ReactDOMRender);
+  });
+
+  test('CSSInterface.create is restored', () => {
+    const { create: CSSInterfaceCreate } = CSSInterface;
+    prepareCompilationEnvironment();
+    cleanupCompilationEnvironment();
+    expect(CSSInterface.create).to.equal(CSSInterfaceCreate);
   });
 });

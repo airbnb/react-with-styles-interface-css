@@ -2,12 +2,12 @@ import globalCache from 'global-cache';
 
 import {
   globalKey,
-  prepareEnvironmentForCompilation,
+  prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 } from '../utils/compile';
 
 function compileCSS(entryPointFileName) {
-  prepareEnvironmentForCompilation();
+  prepareCompilationEnvironment();
   require(`./${entryPointFileName}`);
   const { CSS } = globalCache.get(globalKey);
   cleanupCompilationEnvironment();

@@ -1,7 +1,7 @@
 {
   "name": "react-with-styles-interface-css",
   "version": "0.0.0",
-  "description": "Interface for react-with-styles outputting css",
+  "description": "Interface for react-with-styles outputting CSS",
   "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
   "repository": "airbnb/react-with-styles-interface-css",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
@@ -10,6 +10,13 @@
   "license": "MIT",
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "array-flatten": "^2.1.1",
+    "global-cache": "^1.2.0",
+    "jsdom": "^11.0.0",
+    "object.entries": "^1.0.4",
+    "object.values": "^1.0.4"
   },
   "devDependencies": {
     "babel-preset-airbnb": "^2.2.3",
@@ -20,12 +27,5 @@
     "react-dom": "^15.6.0",
     "react-test-renderer": "^15.5.4",
     "react-with-styles": "^1.4.0"
-  },
-  "dependencies": {
-    "array-flatten": "^2.1.1",
-    "global-cache": "^1.2.0",
-    "jsdom": "^11.0.0",
-    "object.entries": "^1.0.4",
-    "object.values": "^1.0.4"
   }
 }

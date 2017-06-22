@@ -29,11 +29,14 @@ function getCSS(stylesObject, componentName = '') {
   Object.keys(styleSheet).forEach((styleName) => {
     const styleSheetObject = styleSheet[styleName];
     const className = getClassName(shared.namespace, componentName, styleName);
-    styleSheetObject._name = className;
-    for (let i = 1; i <= MAX_SPECIFICITY; i++) {
-      const nextClassName = `.${className}_${i}`.repeat(i).slice(1);
-      styleSheet[nextClassName] = { ...styleSheetObject, _name: nextClassName };
+
+    let extendedClassName = `${className}_1`;
+    for (let i = 2; i <= MAX_SPECIFICITY; i++) {
+      const repeatedSpecifier = `.${className}_${i}`.repeat(i);
+      const nextSpecifier = `,${repeatedSpecifier}`;
+      extendedClassName += nextSpecifier;
     }
+    styleSheetObject._name = extendedClassName;
   });
   const { css: CSSInfo } = StyleSheetServer.renderStatic(() => {
     values(styleSheet).forEach((style) => {
@@ -45,13 +48,15 @@ function getCSS(stylesObject, componentName = '') {
   globalCache.get(globalKey).CSS = CSS;
 }
 
-function prepareEnvironmentForCompilation() {
+function prepareCompilationEnvironment() {
+  oldWindow = global.window;
+  oldDocument = global.document;
+  console.log(oldDocument);
+
   const { window: jsdomWindow } = new JSDOM();
   const { document: jsdomDocument } = jsdomWindow;
 
-  oldWindow = global.window;
   global.window = jsdomWindow;
-  oldDocument = global.document;
   global.document = jsdomDocument;
 
   oldGlobalState = globalCache.get(globalKey);
@@ -77,7 +82,8 @@ function cleanupCompilationEnvironment() {
 export {
   globalKey,
   defaultGlobalValue,
+  MAX_SPECIFICITY,
   getCSS,
-  prepareEnvironmentForCompilation,
+  prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 };

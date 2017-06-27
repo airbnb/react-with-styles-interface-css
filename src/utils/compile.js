@@ -2,10 +2,10 @@ import { JSDOM } from 'jsdom';
 import values from 'object.values';
 import globalCache from 'global-cache';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
-
-import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../constants';
 import CSSInterface from 'react-with-styles-interface-css';
-import getClassName from '../getClassName';
+
+import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
+import getClassName from './getClassName';
 
 const defaultGlobalValue = { namespace: '', CSS: '' };
 

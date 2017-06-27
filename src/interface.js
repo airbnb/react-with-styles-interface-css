@@ -1,9 +1,9 @@
 import { from as flatten } from 'array-flatten';
 import globalCache from 'global-cache';
 
-import { GLOBAL_CACHE_KEY } from '../utils/constants';
-import getClassName from '../utils/getClassName';
-import separateStyles from '../utils/separateStyles';
+import { GLOBAL_CACHE_KEY } from './utils/constants';
+import getClassName from './utils/getClassName';
+import separateStyles from './utils/separateStyles';
 
 /**
  * Function required as part of the react-with-styles interface. Parses the styles provided by

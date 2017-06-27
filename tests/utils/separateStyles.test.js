@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import separateStyles from './index';
+import separateStyles from '../../src/utils/separateStyles';
 
 describe('separateStyles', () => {
   test('Return class names', () => {

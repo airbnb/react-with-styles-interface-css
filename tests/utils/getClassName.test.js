@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import getClassName from './index';
+import getClassName from '../../src/utils/getClassName';
 
 const namespace = 'some-project';
 const componentName = 'Component';

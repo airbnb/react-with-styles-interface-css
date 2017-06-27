@@ -9,8 +9,8 @@ import {
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
   defaultGlobalValue,
-} from './index';
-import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../constants';
+} from '../../src/utils/compile';
+import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../../src/utils/constants';
 
 describe('getCSS', () => {
   test('Return CSS', () => {

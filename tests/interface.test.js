@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import entries from 'object.entries';
 import CSSInterface, { registerCSSInterfaceNamespace } from 'react-with-styles-interface-css';
 
-import getClassName from '../utils/getClassName';
+import getClassName from '../src/utils/getClassName';
 
 const { create, resolve } = CSSInterface;
 const testStyles = {

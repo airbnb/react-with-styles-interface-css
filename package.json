@@ -9,8 +9,8 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack --watch",
+    "build": "babel src --out-dir dist",
+    "dev": "npm run build -- --watch",
     "test": "jest",
     "clean": "rimraf dist/ stylesheet.css",
     "veryclean": "npm run clean && rimraf node_modules/ babelCache/"
@@ -25,8 +25,7 @@
     "object.values": "^1.0.4"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.0",
+    "babel-cli": "^6.24.1",
     "babel-preset-airbnb": "^2.2.3",
     "chai": "^4.0.2",
     "enzyme": "^2.8.2",

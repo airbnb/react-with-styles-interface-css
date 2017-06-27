@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CSSInterface from '../src/interface';
 
 import withStyles from './withStyles';
 import ComponentA from './ComponentA';

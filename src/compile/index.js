@@ -1,15 +1,21 @@
+import { resolve } from 'path';
 import globalCache from 'global-cache';
 
+import { noParseRequire } from './noParse';
+import { GLOBAL_CACHE_KEY } from '../utils/constants';
 import {
-  globalKey,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 } from '../utils/compile';
 
-function compileCSS(entryPointFileName) {
+// All further imports/requires will be transpiled
+import 'babel-register';
+
+function compileCSS(entryPointFilePath) {
   prepareCompilationEnvironment();
-  require(`./${entryPointFileName}`);
-  const { CSS } = globalCache.get(globalKey);
+  const entryPointFileAbsolutePath = resolve(entryPointFilePath);
+  noParseRequire(entryPointFileAbsolutePath);
+  const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
   cleanupCompilationEnvironment();
   return CSS;
 }

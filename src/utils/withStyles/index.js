@@ -1,7 +1,7 @@
 import { withStyles, css } from 'react-with-styles';
 import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
 
-import CSSInterface, { registerCSSInterfaceNamespace } from '../../interface';
+import CSSInterface, { registerCSSInterfaceNamespace } from 'react-with-styles-interface-css';
 
 ThemedStyleSheet.registerDefaultTheme({});
 ThemedStyleSheet.registerInterface(CSSInterface);

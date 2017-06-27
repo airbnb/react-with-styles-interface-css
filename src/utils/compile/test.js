@@ -8,10 +8,9 @@ import {
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
-  globalKey,
   defaultGlobalValue,
-  MAX_SPECIFICITY,
 } from './index';
+import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../constants';
 
 describe('getCSS', () => {
   test('Return CSS', () => {
@@ -22,9 +21,9 @@ describe('getCSS', () => {
         position: 'fixed',
       },
     };
-    globalCache.set(globalKey, defaultGlobalValue);
+    globalCache.set(GLOBAL_CACHE_KEY, defaultGlobalValue);
     getCSS(stylesObject);
-    const { CSS } = globalCache.get(globalKey);
+    const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
 
     // Check all specifiers exist
     for (let i = 1; i <= MAX_SPECIFICITY; i++) {
@@ -55,7 +54,7 @@ describe('prepareCompilationEnvironment', () => {
 
   test('Global state is set', () => {
     prepareCompilationEnvironment();
-    const globalValue = globalCache.get(globalKey);
+    const globalValue = globalCache.get(GLOBAL_CACHE_KEY);
     expect(globalValue).to.equal(defaultGlobalValue);
   });
 
@@ -95,10 +94,10 @@ describe('cleanupCompilationEnvironment', () => {
 
   test.skip('Global state is restored', () => {
     const oldGlobalState = {};
-    globalCache.set(globalKey, oldGlobalState);
+    globalCache.set(GLOBAL_CACHE_KEY, oldGlobalState);
     prepareCompilationEnvironment();
     cleanupCompilationEnvironment();
-    expect(globalCache.get(globalKey)).to.equal(oldGlobalState);
+    expect(globalCache.get(GLOBAL_CACHE_KEY)).to.equal(oldGlobalState);
   });
 
   test('ReactDOM.render is restored when ReactDOM exists', () => {

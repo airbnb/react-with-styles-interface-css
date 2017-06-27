@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import entries from 'object.entries';
 
-import shared from '../shared';
-import CSSInterface from './index';
+import CSSInterface from 'react-with-styles-interface-css';
 import getClassName from '../utils/getClassName';
 import { testStyles, namespace } from '../utils/withStyles';
 

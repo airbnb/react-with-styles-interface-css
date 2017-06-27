@@ -3,13 +3,11 @@ import values from 'object.values';
 import globalCache from 'global-cache';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
-import shared from '../../shared';
-import CSSInterface from '../../interface';
+import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../constants';
+import CSSInterface from 'react-with-styles-interface-css';
 import getClassName from '../getClassName';
 
-const globalKey = 'reactWithStylesInterfaceCSS';
-const defaultGlobalValue = { CSS: '' };
-const MAX_SPECIFICITY = 20;
+const defaultGlobalValue = { namespace: '', CSS: '' };
 
 let ReactDOM;
 let hasReactDOM = false;
@@ -28,13 +26,14 @@ function getCSS(stylesObject, componentName = '') {
   const styleSheet = StyleSheet.create(stylesObject);
   Object.keys(styleSheet).forEach((styleName) => {
     const styleSheetObject = styleSheet[styleName];
-    const className = getClassName(shared.namespace, componentName, styleName);
+    const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+    const { namespace = '' } = sharedState;
+    const className = getClassName(namespace, componentName, styleName);
 
-    let extendedClassName = `${className}_1`;
-    for (let i = 2; i <= MAX_SPECIFICITY; i++) {
+    let extendedClassName = `${className}`;
+    for (let i = 1; i <= MAX_SPECIFICITY; i++) {
       const repeatedSpecifier = `.${className}_${i}`.repeat(i);
-      const nextSpecifier = `,${repeatedSpecifier}`;
-      extendedClassName += nextSpecifier;
+      extendedClassName += `,${repeatedSpecifier}`;
     }
     styleSheetObject._name = extendedClassName;
   });
@@ -45,7 +44,7 @@ function getCSS(stylesObject, componentName = '') {
   });
   const { content: CSS } = CSSInfo;
 
-  globalCache.get(globalKey).CSS = CSS;
+  globalCache.get(GLOBAL_CACHE_KEY).CSS = CSS;
 }
 
 function prepareCompilationEnvironment() {
@@ -59,8 +58,8 @@ function prepareCompilationEnvironment() {
   global.window = jsdomWindow;
   global.document = jsdomDocument;
 
-  oldGlobalState = globalCache.get(globalKey);
-  globalCache.set(globalKey, defaultGlobalValue);
+  oldGlobalState = globalCache.get(GLOBAL_CACHE_KEY);
+  globalCache.set(GLOBAL_CACHE_KEY, defaultGlobalValue);
 
   if (hasReactDOM) {
     oldReactDOMRender = ReactDOM.render;
@@ -74,15 +73,13 @@ function prepareCompilationEnvironment() {
 function cleanupCompilationEnvironment() {
   global.window = oldWindow;
   global.document = oldDocument;
-  globalCache.set(globalKey, oldGlobalState);
+  globalCache.set(GLOBAL_CACHE_KEY, oldGlobalState);
   if (hasReactDOM) ReactDOM.render = oldReactDOMRender;
   CSSInterface.create = oldCSSInterfaceCreate;
 }
 
 export {
-  globalKey,
   defaultGlobalValue,
-  MAX_SPECIFICITY,
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,

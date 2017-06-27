@@ -1,6 +1,7 @@
 import { from as flatten } from 'array-flatten';
+import globalCache from 'global-cache';
 
-import shared from '../shared';
+import { GLOBAL_CACHE_KEY } from '../utils/constants';
 import getClassName from '../utils/getClassName';
 import separateStyles from '../utils/separateStyles';
 
@@ -17,8 +18,10 @@ import separateStyles from '../utils/separateStyles';
 function create(stylesObject, componentName = '') {
   const stylesToClasses = {};
   const styleNames = Object.keys(stylesObject);
+  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+  const { namespace = '' } = sharedState;
   styleNames.forEach((styleName) => {
-    const className = getClassName(shared.namespace, componentName, styleName);
+    const className = getClassName(namespace, componentName, styleName);
     stylesToClasses[styleName] = className;
   });
   return stylesToClasses;
@@ -49,7 +52,12 @@ function resolve(stylesArray) {
  * CSSInterfaceNamespace {String} The namespace to be used. e.g. Name of the project
  */
 function registerCSSInterfaceNamespace(CSSInterfaceNamespace) {
-  shared.namespace = CSSInterfaceNamespace;
+  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+  if (!sharedState) {
+    globalCache.set(GLOBAL_CACHE_KEY, { namespace: CSSInterfaceNamespace });
+  } else {
+    sharedState.namespace = CSSInterfaceNamespace;
+  }
 }
 
 export default { create, resolve };

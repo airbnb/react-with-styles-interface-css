@@ -6,13 +6,18 @@
   "repository": "airbnb/react-with-styles-interface-css",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
   "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
-  "main": "src/interface",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "test": "jest",
+    "clean": "rimraf dist/ stylesheet.css",
+    "veryclean": "npm run clean && rimraf node_modules/ babelCache/"
   },
   "dependencies": {
     "array-flatten": "^2.1.1",
+    "babel-register": "^6.24.1",
     "clean-css": "^4.1.4",
     "global-cache": "^1.2.0",
     "jsdom": "^11.0.0",
@@ -20,6 +25,8 @@
     "object.values": "^1.0.4"
   },
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
     "babel-preset-airbnb": "^2.2.3",
     "chai": "^4.0.2",
     "enzyme": "^2.8.2",
@@ -27,6 +34,8 @@
     "react": "^15.6.0",
     "react-dom": "^15.6.0",
     "react-test-renderer": "^15.5.4",
-    "react-with-styles": "^1.4.0"
+    "react-with-styles": "^1.4.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.0.0"
   }
 }

@@ -18,7 +18,7 @@ import separateStyles from '../utils/separateStyles';
 function create(stylesObject, componentName = '') {
   const stylesToClasses = {};
   const styleNames = Object.keys(stylesObject);
-  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+  const sharedState = globalCache.get(GLOBAL_CACHE_KEY) || {};
   const { namespace = '' } = sharedState;
   styleNames.forEach((styleName) => {
     const className = getClassName(namespace, componentName, styleName);

@@ -5,12 +5,10 @@ import CSSInterface, { registerCSSInterfaceNamespace } from 'react-with-styles-i
 import getClassName from '../utils/getClassName';
 
 const { create, resolve } = CSSInterface;
-const namespace = 'Test';
 const testStyles = {
   iguana: { color: 'red' },
 };
 
-registerCSSInterfaceNamespace(namespace);
 
 describe('create', () => {
   test('Return an object mapping style names to class names', () => {
@@ -21,7 +19,7 @@ describe('create', () => {
     expect(stylesToClassesLength).to.equal(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
-      const expectedClassName = getClassName(namespace, '', styleName);
+      const expectedClassName = getClassName('', '', styleName);
       expect(className).to.equal(expectedClassName);
     });
   });
@@ -35,7 +33,7 @@ describe('create', () => {
     expect(stylesToClassesLength).to.equal(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
-      const expectedClassName = getClassName(namespace, componentName, styleName);
+      const expectedClassName = getClassName('', componentName, styleName);
       expect(className).to.equal(expectedClassName);
     });
   });
@@ -77,6 +75,15 @@ describe('resolve', () => {
 });
 
 describe('registerCSSInterfaceNamespace', () => {
+  const namespace = 'Test';
+
+  beforeAll(() => {
+    registerCSSInterfaceNamespace(namespace);
+  });
+  afterAll(() => {
+    registerCSSInterfaceNamespace('');
+  });
+
   test('Register namespace with the interface', () => {
     const stylesToClasses = create(testStyles, '');
     Object.keys(testStyles).forEach((styleName) => {

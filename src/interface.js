@@ -7,21 +7,20 @@ import separateStyles from './utils/separateStyles';
 
 /**
  * Function required as part of the react-with-styles interface. Parses the styles provided by
- * react-with-styles to produce class names based on the style name and optionally the component
- * name and namespace if available.
+ * react-with-styles to produce class names based on the style name and optionally the namespace if
+ * available.
  *
  * stylesObject {Object} The styles object passed to withStyles.
- * componentName {String} optional Name of the component to use in constructing unique class names.
  *
  * Return an object mapping style names to class names.
  */
-function create(stylesObject, componentName = '') {
+function create(stylesObject) {
   const stylesToClasses = {};
   const styleNames = Object.keys(stylesObject);
   const sharedState = globalCache.get(GLOBAL_CACHE_KEY) || {};
   const { namespace = '' } = sharedState;
   styleNames.forEach((styleName) => {
-    const className = getClassName(namespace, componentName, styleName);
+    const className = getClassName(namespace, styleName);
     stylesToClasses[styleName] = className;
   });
   return stylesToClasses;

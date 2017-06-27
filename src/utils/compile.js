@@ -23,13 +23,13 @@ let oldReactDOMRender;
 let oldGlobalState;
 let oldCSSInterfaceCreate;
 
-function getCSS(stylesObject, componentName = '') {
+function getCSS(stylesObject) {
   const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
 
   const styleSheet = StyleSheet.create(stylesObject);
   entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
     const { namespace = '' } = sharedState;
-    const className = getClassName(namespace, componentName, styleName);
+    const className = getClassName(namespace, styleName);
 
     let extendedClassName = `${className}`;
     for (let i = 1; i <= MAX_SPECIFICITY; i++) {

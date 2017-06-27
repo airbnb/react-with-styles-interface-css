@@ -12,30 +12,34 @@ const testStyles = {
 
 describe('create', () => {
   test('Return an object mapping style names to class names', () => {
-    const stylesToClasses = create(testStyles, '');
+    const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
     const { length: stylesToClassesLength } = Object.keys(stylesToClasses);
 
     expect(stylesToClassesLength).to.equal(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
-      const expectedClassName = getClassName('', '', styleName);
+      const expectedClassName = getClassName('', styleName);
       expect(className).to.equal(expectedClassName);
     });
   });
 
-  test('Use component name in class name', () => {
-    const componentName = 'Component';
-    const stylesToClasses = create(testStyles, componentName);
+  test('Use namespace in class name', () => {
+    const namespace = 'Test';
+    registerCSSInterfaceNamespace(namespace);
+
+    const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
     const { length: stylesToClassesLength } = Object.keys(stylesToClasses);
 
     expect(stylesToClassesLength).to.equal(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
-      const expectedClassName = getClassName('', componentName, styleName);
+      const expectedClassName = getClassName(namespace, styleName);
       expect(className).to.equal(expectedClassName);
     });
+
+    registerCSSInterfaceNamespace('');
   });
 });
 
@@ -78,7 +82,7 @@ describe('registerCSSInterfaceNamespace', () => {
   test('Register namespace with the interface', () => {
     const namespace = 'Test';
     registerCSSInterfaceNamespace(namespace);
-    const stylesToClasses = create(testStyles, '');
+    const stylesToClasses = create(testStyles);
     Object.keys(testStyles).forEach((styleName) => {
       expect(stylesToClasses[styleName]).to.equal(`${namespace}__${styleName}`);
     });

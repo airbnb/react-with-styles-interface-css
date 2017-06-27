@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import globalCache from 'global-cache';
 import values from 'object.values';
 import ReactDOM from 'react-dom';
-import CSSInterface from 'react-with-styles-interface-css';
+import CSSInterface from '../../src/interface';
 
 import {
   getCSS,

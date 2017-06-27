@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import entries from 'object.entries';
-import CSSInterface, { registerCSSInterfaceNamespace } from 'react-with-styles-interface-css';
+import CSSInterface, { registerCSSInterfaceNamespace } from '../src/interface';
 
 import getClassName from '../src/utils/getClassName';
 

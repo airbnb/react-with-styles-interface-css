@@ -75,19 +75,13 @@ describe('resolve', () => {
 });
 
 describe('registerCSSInterfaceNamespace', () => {
-  const namespace = 'Test';
-
-  beforeAll(() => {
-    registerCSSInterfaceNamespace(namespace);
-  });
-  afterAll(() => {
-    registerCSSInterfaceNamespace('');
-  });
-
   test('Register namespace with the interface', () => {
+    const namespace = 'Test';
+    registerCSSInterfaceNamespace(namespace);
     const stylesToClasses = create(testStyles, '');
     Object.keys(testStyles).forEach((styleName) => {
       expect(stylesToClasses[styleName]).to.equal(`${namespace}__${styleName}`);
     });
+    registerCSSInterfaceNamespace('');
   });
 });

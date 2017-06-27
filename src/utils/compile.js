@@ -26,8 +26,7 @@ function getCSS(stylesObject, componentName = '') {
   const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
 
   const styleSheet = StyleSheet.create(stylesObject);
-  Object.keys(styleSheet).forEach((styleName) => {
-    const styleSheetObject = styleSheet[styleName];
+  Object.entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
     const { namespace = '' } = sharedState;
     const className = getClassName(namespace, componentName, styleName);
 

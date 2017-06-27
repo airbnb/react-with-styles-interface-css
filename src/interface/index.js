@@ -10,7 +10,7 @@ import separateStyles from '../utils/separateStyles';
  * react-with-styles to produce class names based on the style name and optionally the component
  * name and namespace if available.
  *
- * stylesObject {Object} The styles object passed to withStyles().
+ * stylesObject {Object} The styles object passed to withStyles.
  * componentName {String} optional Name of the component to use in constructing unique class names.
  *
  * Return an object mapping style names to class names.

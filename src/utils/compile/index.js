@@ -23,10 +23,11 @@ let oldGlobalState;
 let oldCSSInterfaceCreate;
 
 function getCSS(stylesObject, componentName = '') {
+  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+
   const styleSheet = StyleSheet.create(stylesObject);
   Object.keys(styleSheet).forEach((styleName) => {
     const styleSheetObject = styleSheet[styleName];
-    const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
     const { namespace = '' } = sharedState;
     const className = getClassName(namespace, componentName, styleName);
 
@@ -42,9 +43,11 @@ function getCSS(stylesObject, componentName = '') {
       compile(style);
     });
   });
-  const { content: CSS } = CSSInfo;
+  const { content: newCSS } = CSSInfo;
 
-  globalCache.get(GLOBAL_CACHE_KEY).CSS = CSS;
+  // Prepend newCSS so the entry point styles appear at the top of the stylesheet
+  const { CSS } = sharedState;
+  sharedState.CSS = newCSS + CSS;
 }
 
 function prepareCompilationEnvironment() {

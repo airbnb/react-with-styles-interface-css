@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CSSInterface from 'react-with-styles-interface-css';
 
-import { withStyles } from './withStyles';
+import withStyles from './withStyles';
 import ComponentA from './ComponentA';
 
 const EntryPoint = withStyles(() => ({
-  ComponentA_primary: { color: 'red' },
-  ComponentA_secondary: { color: 'blue' },
+  EntryPoint_primary: { color: 'black' },
+  EntryPoint_secondary: { color: 'white' },
 }))(function EntryPoint() {
   return (
     <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withStyles } from './withStyles';
+import withStyles from './withStyles';
 import ComponentB from './ComponentB';
 
 export default withStyles(() => ({

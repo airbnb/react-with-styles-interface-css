@@ -1,11 +1,16 @@
 import { expect } from 'chai';
 import entries from 'object.entries';
+import CSSInterface, { registerCSSInterfaceNamespace } from 'react-with-styles-interface-css';
 
-import CSSInterface from 'react-with-styles-interface-css';
 import getClassName from '../utils/getClassName';
-import { testStyles, namespace } from '../utils/withStyles';
 
 const { create, resolve } = CSSInterface;
+const namespace = 'Test';
+const testStyles = {
+  iguana: { color: 'red' },
+};
+
+registerCSSInterfaceNamespace(namespace);
 
 describe('create', () => {
   test('Return an object mapping style names to class names', () => {
@@ -74,6 +79,8 @@ describe('resolve', () => {
 describe('registerCSSInterfaceNamespace', () => {
   test('Register namespace with the interface', () => {
     const stylesToClasses = create(testStyles, '');
-    expect(stylesToClasses.iguana).to.equal('Test__iguana');
+    Object.keys(testStyles).forEach((styleName) => {
+      expect(stylesToClasses[styleName]).to.equal(`${namespace}__${styleName}`);
+    });
   });
 });

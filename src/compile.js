@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import globalCache from 'global-cache';
 
-import { noParseRequire } from './utils/noParse';
 import { GLOBAL_CACHE_KEY } from './utils/constants';
 import {
   prepareCompilationEnvironment,
@@ -14,7 +13,7 @@ import 'babel-register';
 function compileCSS(entryPointFilePath) {
   prepareCompilationEnvironment();
   const entryPointFileAbsolutePath = resolve(entryPointFilePath);
-  noParseRequire(entryPointFileAbsolutePath);
+  require(entryPointFileAbsolutePath);
   const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
   cleanupCompilationEnvironment();
   return CSS;

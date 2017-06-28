@@ -6,7 +6,9 @@
   "repository": "airbnb/react-with-styles-interface-css",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
   "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
-  "main": "dist/index.js",
+  "main": "dist/interface",
+  "bin": { "compile-css": "bin/compile-css" },
+  "files": ["dist", "bin"],
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir dist",

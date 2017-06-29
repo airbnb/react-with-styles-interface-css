@@ -52,12 +52,6 @@ describe('prepareCompilationEnvironment', () => {
     expect(global.document).to.not.be.undefined;
   });
 
-  test('Global state is set', () => {
-    prepareCompilationEnvironment();
-    const globalValue = globalCache.get(GLOBAL_CACHE_KEY);
-    expect(globalValue).to.equal(DEFAULT_GLOBAL_VALUE);
-  });
-
   test('ReactDOM.render is changed when ReactDOM exists', () => {
     prepareCompilationEnvironment();
     expect(ReactDOM.render.name).to.equal('noopReactDOMRender');
@@ -70,7 +64,7 @@ describe('prepareCompilationEnvironment', () => {
 });
 
 describe('cleanupCompilationEnvironment', () => {
-  test.skip('`window` is restored', () => {
+  test('`window` is restored', () => {
     const oldWindow = {};
     global.window = oldWindow;
     prepareCompilationEnvironment();
@@ -78,22 +72,12 @@ describe('cleanupCompilationEnvironment', () => {
     expect(global.window).to.equal(oldWindow);
   });
 
-  test.skip('`document` is restored', () => {
+  test('`document` is restored', () => {
     const oldDocument = {};
     global.document = oldDocument;
-    global.document = 'potatop';
-    delete global.document;
     prepareCompilationEnvironment();
     cleanupCompilationEnvironment();
     expect(global.document).to.equal(oldDocument);
-  });
-
-  test.skip('Global state is restored', () => {
-    const oldGlobalState = {};
-    globalCache.set(GLOBAL_CACHE_KEY, oldGlobalState);
-    prepareCompilationEnvironment();
-    cleanupCompilationEnvironment();
-    expect(globalCache.get(GLOBAL_CACHE_KEY)).to.equal(oldGlobalState);
   });
 
   test('ReactDOM.render is restored when ReactDOM exists', () => {

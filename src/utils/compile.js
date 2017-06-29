@@ -8,7 +8,7 @@ import CSSInterface from '../interface';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
 import getClassName from './getClassName';
 
-const DEFAULT_GLOBAL_VALUE = { namespace: '', CSS: '' };
+const CSS = '';
 
 let ReactDOM;
 let hasReactDOM = false;
@@ -20,7 +20,6 @@ try {
 let oldWindow;
 let oldDocument;
 let oldReactDOMRender;
-let oldGlobalState;
 let oldCSSInterfaceCreate;
 
 function getCSS(stylesObject) {
@@ -46,22 +45,17 @@ function getCSS(stylesObject) {
   const { content: newCSS } = CSSInfo;
 
   // Prepend newCSS so the entry point styles appear at the top of the stylesheet
-  const { CSS } = sharedState;
-  sharedState.CSS = newCSS + CSS;
+  CSS = newCSS + CSS;
 }
 
 function prepareCompilationEnvironment() {
-  oldWindow = global.window;
-  oldDocument = global.document;
-
   const { window: jsdomWindow } = new JSDOM();
   const { document: jsdomDocument } = jsdomWindow;
 
+  oldWindow = global.window;
   global.window = jsdomWindow;
+  oldDocument = global.document;
   global.document = jsdomDocument;
-
-  oldGlobalState = globalCache.get(GLOBAL_CACHE_KEY);
-  globalCache.set(GLOBAL_CACHE_KEY, DEFAULT_GLOBAL_VALUE);
 
   if (hasReactDOM) {
     oldReactDOMRender = ReactDOM.render;
@@ -75,13 +69,11 @@ function prepareCompilationEnvironment() {
 function cleanupCompilationEnvironment() {
   global.window = oldWindow;
   global.document = oldDocument;
-  globalCache.set(GLOBAL_CACHE_KEY, oldGlobalState);
   if (hasReactDOM) ReactDOM.render = oldReactDOMRender;
   CSSInterface.create = oldCSSInterfaceCreate;
 }
 
 export {
-  DEFAULT_GLOBAL_VALUE,
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,

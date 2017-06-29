@@ -8,7 +8,7 @@ import {
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
-  defaultGlobalValue,
+  DEFAULT_GLOBAL_VALUE,
 } from '../../src/utils/compile';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../../src/utils/constants';
 
@@ -21,7 +21,7 @@ describe('getCSS', () => {
         position: 'fixed',
       },
     };
-    globalCache.set(GLOBAL_CACHE_KEY, defaultGlobalValue);
+    globalCache.set(GLOBAL_CACHE_KEY, DEFAULT_GLOBAL_VALUE);
     getCSS(stylesObject);
     const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
 
@@ -55,7 +55,7 @@ describe('prepareCompilationEnvironment', () => {
   test('Global state is set', () => {
     prepareCompilationEnvironment();
     const globalValue = globalCache.get(GLOBAL_CACHE_KEY);
-    expect(globalValue).to.equal(defaultGlobalValue);
+    expect(globalValue).to.equal(DEFAULT_GLOBAL_VALUE);
   });
 
   test('ReactDOM.render is changed when ReactDOM exists', () => {

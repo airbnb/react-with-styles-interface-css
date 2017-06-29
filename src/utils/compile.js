@@ -8,7 +8,7 @@ import CSSInterface from '../interface';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
 import getClassName from './getClassName';
 
-const defaultGlobalValue = { namespace: '', CSS: '' };
+const DEFAULT_GLOBAL_VALUE = { namespace: '', CSS: '' };
 
 let ReactDOM;
 let hasReactDOM = false;
@@ -61,7 +61,7 @@ function prepareCompilationEnvironment() {
   global.document = jsdomDocument;
 
   oldGlobalState = globalCache.get(GLOBAL_CACHE_KEY);
-  globalCache.set(GLOBAL_CACHE_KEY, defaultGlobalValue);
+  globalCache.set(GLOBAL_CACHE_KEY, DEFAULT_GLOBAL_VALUE);
 
   if (hasReactDOM) {
     oldReactDOMRender = ReactDOM.render;
@@ -81,7 +81,7 @@ function cleanupCompilationEnvironment() {
 }
 
 export {
-  defaultGlobalValue,
+  DEFAULT_GLOBAL_VALUE,
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,

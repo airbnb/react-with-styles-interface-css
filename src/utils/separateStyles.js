@@ -20,8 +20,9 @@ function separateStyles(stylesArray) {
     //
     //   css(isFoo && styles.foo)
     if (style) {
-      if (typeof style === 'string') classNames.push(style);
-      else {
+      if (typeof style === 'string') {
+        classNames.push(style);
+      } else {
         Object.assign(inlineStyles, style);
         hasInlineStyles = true;
       }

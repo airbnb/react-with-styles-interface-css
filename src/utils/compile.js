@@ -53,7 +53,6 @@ function getCSS(stylesObject) {
 function prepareCompilationEnvironment() {
   oldWindow = global.window;
   oldDocument = global.document;
-  console.log(oldDocument);
 
   const { window: jsdomWindow } = new JSDOM();
   const { document: jsdomDocument } = jsdomWindow;

@@ -80,13 +80,9 @@ describe('cleanupCompilationEnvironment', () => {
 
   test.skip('`document` is restored', () => {
     const oldDocument = {};
-    console.log('huh', oldDocument);
-    console.log("hmmmm", global.document);
     global.document = oldDocument;
     global.document = 'potatop';
-    console.log('well', global.document);
     delete global.document;
-    console.log('hahaha', global.document);
     prepareCompilationEnvironment();
     cleanupCompilationEnvironment();
     expect(global.document).to.equal(oldDocument);

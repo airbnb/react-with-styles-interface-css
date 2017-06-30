@@ -10,10 +10,6 @@
   "bin": {
     "compile-css": "bin/compile-css"
   },
-  "files": [
-    "dist",
-    "bin"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir dist",

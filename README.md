@@ -1,12 +1,12 @@
-# Draft: react-with-styles-interface-css
+# react-with-styles-interface-css
 
-Interface for [react-with-styles](https://github.com/airbnb/react-with-styles#readme) which compiles to static CSS with deterministic and human-friendly class names that can easily be overridden.
+Interface for [react-with-styles](https://www.npmjs.com/package/react-with-styles) that compiles CSS-in-js styles to static CSS classes with deterministic and human-friendly class names whose styles can be easily overridden.
 
 ## Usage
 
 ### Interface
 
-A react-with-styles interface which is to be used along with react-with-styles.
+A [react-with-styles](https://www.npmjs.com/package/react-with-styles) interface which is to be used along with [react-with-styles](https://www.npmjs.com/package/react-with-styles).
 
 ```javascript
 import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';

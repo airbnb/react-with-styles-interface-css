@@ -24,7 +24,7 @@ describe('getCSS', () => {
     getCSS(stylesObject);
 
     // Check all specifiers exist
-    for (let i = 1; i <= MAX_SPECIFICITY; i++) {
+    for (let i = 1; i <= MAX_SPECIFICITY; i += 1) {
       Object.keys(stylesObject).forEach((styleName) => {
         expect(CSS.includes(`.${styleName}_${i}`.repeat(i))).to.equal(true);
       });

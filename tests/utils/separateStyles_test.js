@@ -4,7 +4,7 @@ import separateStyles from '../../src/utils/separateStyles';
 
 describe('separateStyles', () => {
   it('Return class names', () => {
-    const { classNames } = separateStyles(['a', { color: 'blue' },  'b', 'c', { color: 'red' }]);
+    const { classNames } = separateStyles(['a', { color: 'blue' }, 'b', 'c', { color: 'red' }]);
     expect(classNames).to.deep.equal(['a', 'b', 'c']);
   });
 

@@ -15,7 +15,7 @@
     "build": "babel src --out-dir dist",
     "dev": "npm run build -- --watch",
     "test": "jest",
-    "lint": "eslint src",
+    "lint": "eslint .",
     "clean": "rimraf dist/ stylesheet.css",
     "veryclean": "npm run clean && rimraf node_modules/ babelCache/"
   },

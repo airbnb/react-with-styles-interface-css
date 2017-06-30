@@ -8,14 +8,16 @@ import CSSInterface from '../interface';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
 import getClassName from './getClassName';
 
+// eslint-disable-next-line import/no-mutable-exports
 let CSS = '';
 
 let ReactDOM;
 let hasReactDOM = false;
 try {
+  // eslint-disable-next-line global-require
   ReactDOM = require('react-dom');
   hasReactDOM = true;
-} catch(err) {}
+} catch (err) {} // eslint-disable-line no-empty
 
 let oldWindow;
 let oldDocument;
@@ -31,10 +33,11 @@ function getCSS(stylesObject) {
     const className = getClassName(namespace, styleName);
 
     let extendedClassName = `${className}`;
-    for (let i = 1; i <= MAX_SPECIFICITY; i++) {
+    for (let i = 1; i <= MAX_SPECIFICITY; i += 1) {
       const repeatedSpecifier = `.${className}_${i}`.repeat(i);
       extendedClassName += `,${repeatedSpecifier}`;
     }
+    // eslint-disable-next-line no-underscore-dangle, no-param-reassign
     styleSheetObject._name = extendedClassName;
   });
   const { css: CSSInfo } = StyleSheetServer.renderStatic(() => {

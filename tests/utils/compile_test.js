@@ -1,16 +1,15 @@
 import { expect } from 'chai';
-import globalCache from 'global-cache';
 import values from 'object.values';
 import ReactDOM from 'react-dom';
 import CSSInterface from '../../src/interface';
 
 import {
+  CSS,
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
-  DEFAULT_GLOBAL_VALUE,
 } from '../../src/utils/compile';
-import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from '../../src/utils/constants';
+import { MAX_SPECIFICITY } from '../../src/utils/constants';
 
 describe('getCSS', () => {
   test('Return CSS', () => {
@@ -21,9 +20,7 @@ describe('getCSS', () => {
         position: 'fixed',
       },
     };
-    globalCache.set(GLOBAL_CACHE_KEY, DEFAULT_GLOBAL_VALUE);
     getCSS(stylesObject);
-    const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
 
     // Check all specifiers exist
     for (let i = 1; i <= MAX_SPECIFICITY; i++) {

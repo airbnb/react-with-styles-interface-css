@@ -1,8 +1,7 @@
 import { resolve } from 'path';
-import globalCache from 'global-cache';
 
-import { GLOBAL_CACHE_KEY } from './utils/constants';
 import {
+  CSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 } from './utils/compile';
@@ -14,7 +13,6 @@ function compileCSS(entryPointFilePath) {
   prepareCompilationEnvironment();
   const entryPointFileAbsolutePath = resolve(entryPointFilePath);
   require(entryPointFileAbsolutePath);
-  const { CSS } = globalCache.get(GLOBAL_CACHE_KEY);
   cleanupCompilationEnvironment();
   return CSS;
 }

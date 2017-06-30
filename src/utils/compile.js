@@ -8,7 +8,7 @@ import CSSInterface from '../interface';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
 import getClassName from './getClassName';
 
-const CSS = '';
+let CSS = '';
 
 let ReactDOM;
 let hasReactDOM = false;
@@ -23,7 +23,7 @@ let oldReactDOMRender;
 let oldCSSInterfaceCreate;
 
 function getCSS(stylesObject) {
-  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
+  const sharedState = globalCache.get(GLOBAL_CACHE_KEY) || {};
 
   const styleSheet = StyleSheet.create(stylesObject);
   entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
@@ -74,6 +74,7 @@ function cleanupCompilationEnvironment() {
 }
 
 export {
+  CSS,
   getCSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,

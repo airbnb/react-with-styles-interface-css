@@ -30,7 +30,7 @@ describe('create', () => {
     const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
 
-    expect(Object.keys(stylesToClasses)).to.equal(testStylesLength);
+    expect(Object.keys(stylesToClasses)).to.have.lengthOf(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
       const expectedClassName = getClassName(namespace, styleName);

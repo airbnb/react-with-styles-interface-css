@@ -3,18 +3,18 @@ import { expect } from 'chai';
 import separateStyles from '../../src/utils/separateStyles';
 
 describe('separateStyles', () => {
-  test('Return class names', () => {
+  it('Return class names', () => {
     const { classNames } = separateStyles(['a', { color: 'blue' },  'b', 'c', { color: 'red' }]);
     expect(classNames).to.deep.equal(['a', 'b', 'c']);
   });
 
-  test('Return no inline styles', () => {
+  it('Return no inline styles', () => {
     const { hasInlineStyles, inlineStyles } = separateStyles(['a', 'b', 'c']);
     expect(hasInlineStyles).to.equal(false);
     expect(inlineStyles).to.deep.equal({});
   });
 
-  test('Return inline styles', () => {
+  it('Return inline styles', () => {
     const { hasInlineStyles, inlineStyles } = separateStyles([
       { color: 'blue' },
       { fontSize: '1rem' },

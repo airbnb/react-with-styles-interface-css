@@ -12,7 +12,7 @@ import {
 import { MAX_SPECIFICITY } from '../../src/utils/constants';
 
 describe('getCSS', () => {
-  test('Return CSS', () => {
+  it('Return CSS', () => {
     const stylesObject = {
       primary: {
         color: 'red',
@@ -39,29 +39,29 @@ describe('getCSS', () => {
 describe('prepareCompilationEnvironment', () => {
   afterEach(cleanupCompilationEnvironment);
 
-  test('`window` is globally available', () => {
+  it('`window` is globally available', () => {
     prepareCompilationEnvironment();
     expect(global.window).not.to.equal(undefined);
   });
 
-  test('`document` is globally available', () => {
+  it('`document` is globally available', () => {
     prepareCompilationEnvironment();
     expect(global.document).not.to.equal(undefined);
   });
 
-  test('ReactDOM.render is changed when ReactDOM exists', () => {
+  it('ReactDOM.render is changed when ReactDOM exists', () => {
     prepareCompilationEnvironment();
     expect(ReactDOM.render.name).to.equal('noopReactDOMRender');
   });
 
-  test('CSSInterface.create is changed', () => {
+  it('CSSInterface.create is changed', () => {
     prepareCompilationEnvironment();
     expect(CSSInterface.create.name).to.equal('getCSS');
   });
 });
 
 describe('cleanupCompilationEnvironment', () => {
-  test('`window` is restored', () => {
+  it('`window` is restored', () => {
     const oldWindow = {};
     global.window = oldWindow;
     prepareCompilationEnvironment();
@@ -69,7 +69,7 @@ describe('cleanupCompilationEnvironment', () => {
     expect(global.window).to.equal(oldWindow);
   });
 
-  test('`document` is restored', () => {
+  it('`document` is restored', () => {
     const oldDocument = {};
     global.document = oldDocument;
     prepareCompilationEnvironment();
@@ -77,14 +77,14 @@ describe('cleanupCompilationEnvironment', () => {
     expect(global.document).to.equal(oldDocument);
   });
 
-  test('ReactDOM.render is restored when ReactDOM exists', () => {
+  it('ReactDOM.render is restored when ReactDOM exists', () => {
     const { render: ReactDOMRender } = ReactDOM;
     prepareCompilationEnvironment();
     cleanupCompilationEnvironment();
     expect(ReactDOM.render).to.equal(ReactDOMRender);
   });
 
-  test('CSSInterface.create is restored', () => {
+  it('CSSInterface.create is restored', () => {
     const { create: CSSInterfaceCreate } = CSSInterface;
     prepareCompilationEnvironment();
     cleanupCompilationEnvironment();

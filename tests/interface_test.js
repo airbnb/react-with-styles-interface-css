@@ -11,7 +11,7 @@ const testStyles = {
 
 
 describe('create', () => {
-  test('Return an object mapping style names to class names', () => {
+  it('Return an object mapping style names to class names', () => {
     const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
 
@@ -23,7 +23,7 @@ describe('create', () => {
     });
   });
 
-  test('Use namespace in class name', () => {
+  it('Use namespace in class name', () => {
     const namespace = 'Test';
     registerCSSInterfaceNamespace(namespace);
 
@@ -42,7 +42,7 @@ describe('create', () => {
 });
 
 describe('resolve', () => {
-  test('Accept array of class names and inline style objects', () => {
+  it('Accept array of class names and inline style objects', () => {
     const result = resolve([
       'a',
       'b',
@@ -54,7 +54,7 @@ describe('resolve', () => {
     expect(result).to.have.property('style');
   });
 
-  test('Accept array of arrays of class names and inline style objects', () => {
+  it('Accept array of arrays of class names and inline style objects', () => {
     const result = resolve([
       ['a', 'b', 'c'],
       [{ color: 'orange', width: '10px' }, { color: 'red', height: '5px' }],
@@ -63,7 +63,7 @@ describe('resolve', () => {
     expect(result).to.have.property('style');
   });
 
-  test('Return style and className props with position suffixes', () => {
+  it('Return style and className props with position suffixes', () => {
     const { className, style } = resolve([
       'a',
       'b',
@@ -77,7 +77,7 @@ describe('resolve', () => {
 });
 
 describe('registerCSSInterfaceNamespace', () => {
-  test('Register namespace with the interface', () => {
+  it('Register namespace with the interface', () => {
     const namespace = 'Test';
     registerCSSInterfaceNamespace(namespace);
     const stylesToClasses = create(testStyles);

@@ -14,9 +14,8 @@ describe('create', () => {
   test('Return an object mapping style names to class names', () => {
     const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
-    const { length: stylesToClassesLength } = Object.keys(stylesToClasses);
 
-    expect(stylesToClassesLength).to.equal(testStylesLength);
+    expect(Object.keys(stylesToClasses)).to.have.lengthOf(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
       const expectedClassName = getClassName('', styleName);
@@ -30,9 +29,8 @@ describe('create', () => {
 
     const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
-    const { length: stylesToClassesLength } = Object.keys(stylesToClasses);
 
-    expect(stylesToClassesLength).to.equal(testStylesLength);
+    expect(Object.keys(stylesToClasses)).to.equal(testStylesLength);
 
     entries(stylesToClasses).forEach(([styleName, className]) => {
       const expectedClassName = getClassName(namespace, styleName);

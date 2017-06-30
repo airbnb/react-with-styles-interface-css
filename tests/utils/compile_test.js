@@ -44,12 +44,12 @@ describe('prepareCompilationEnvironment', () => {
 
   test('`window` is globally available', () => {
     prepareCompilationEnvironment();
-    expect(global.window).to.not.be.undefined;
+    expect(global.window).not.to.equal(undefined);
   });
 
   test('`document` is globally available', () => {
     prepareCompilationEnvironment();
-    expect(global.document).to.not.be.undefined;
+    expect(global.document).not.to.equal(undefined);
   });
 
   test('ReactDOM.render is changed when ReactDOM exists', () => {

@@ -51,6 +51,8 @@ function getCSS(stylesObject) {
   CSS = newCSS + CSS;
 }
 
+function noopReactDOMRender() {}
+
 function prepareCompilationEnvironment() {
   const { window: jsdomWindow } = new JSDOM();
   const { document: jsdomDocument } = jsdomWindow;
@@ -62,7 +64,7 @@ function prepareCompilationEnvironment() {
 
   if (hasReactDOM) {
     oldReactDOMRender = ReactDOM.render;
-    ReactDOM.render = function noopReactDOMRender() {};
+    ReactDOM.render = noopReactDOMRender;
   }
 
   oldCSSInterfaceCreate = CSSInterface.create;
@@ -79,6 +81,7 @@ function cleanupCompilationEnvironment() {
 export {
   CSS,
   getCSS,
+  noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 };

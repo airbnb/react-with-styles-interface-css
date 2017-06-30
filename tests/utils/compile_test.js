@@ -6,6 +6,7 @@ import CSSInterface from '../../src/interface';
 import {
   CSS,
   getCSS,
+  noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 } from '../../src/utils/compile';
@@ -51,7 +52,7 @@ describe('prepareCompilationEnvironment', () => {
 
   it('ReactDOM.render is changed when ReactDOM exists', () => {
     prepareCompilationEnvironment();
-    expect(ReactDOM.render.name).to.equal('noopReactDOMRender');
+    expect(ReactDOM.render).to.equal(noopReactDOMRender);
   });
 
   it('CSSInterface.create is changed', () => {

@@ -6,7 +6,7 @@ import expectedCSS from './expectedCSS';
 const entryPointFilePath = 'tests/entryPoint';
 
 describe('compileCSS', () => {
-  it('Return css', () => {
+  it('returns css', () => {
     const CSS = compileCSS(entryPointFilePath);
     expect(CSS).to.equal(expectedCSS);
   });

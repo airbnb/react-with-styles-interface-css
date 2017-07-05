@@ -17,7 +17,8 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "rimraf dist/ stylesheet.css",
-    "veryclean": "npm run clean && rimraf node_modules/ babelCache/"
+    "veryclean": "npm run clean && rimraf node_modules/ babelCache/",
+    "prepublish": "safe-publish-latest"
   },
   "dependencies": {
     "aphrodite": "^1.2.1",
@@ -43,6 +44,7 @@
     "react-test-renderer": "^15.5.4",
     "react-with-styles": "^1.4.0",
     "rimraf": "^2.6.1",
+    "safe-publish-latest": "^1.1.1",
     "webpack": "^3.0.0"
   }
 }

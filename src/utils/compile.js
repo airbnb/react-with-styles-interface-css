@@ -4,7 +4,7 @@ import entries from 'object.entries';
 import globalCache from 'global-cache';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
-import CSSInterface from '../interface';
+import CSSInterface from '..';
 import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
 import getClassName from './getClassName';
 

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import values from 'object.values';
 import ReactDOM from 'react-dom';
-import CSSInterface from '../../src/interface';
+import CSSInterface from '../../src';
 
 import {
   CSS,

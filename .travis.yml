@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "8"
+  - "7"
+  - "6"
+  - "5"
+  - "4"
+script:
+  - 'if [ -n "${LINT-}" ]; then npm run lint ; fi'
+  - 'if [ "${TEST-}" = true ]; then npm run test ; fi'
+env:
+  global:
+    - TEST=true
+  matrix:
+    - REACT=0.13
+    - REACT=0.14
+    - REACT=15
+sudo: false
+matrix:
+  fast_finish: true
+  include:
+      env: LINT=true TEST=false

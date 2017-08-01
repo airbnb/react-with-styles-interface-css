@@ -19,6 +19,14 @@ const namespace = 'MyPackageName';
 registerCSSInterfaceNamespace(namespace);
 ```
 
+### Styles
+When writing styles, all classes throughout a project should be given unique names. Otherwise, class name collisions may result in unexpected and unwanted behavior.
+
+### Overriding styles
+The styles for a class can be overridden using the same name with which the class was defined. If the optional class name prefix was configured, the prefix should be used when overriding a class.
+
+**Note:** In order to provide compatibility with [aphrodite](https://github.com/airbnb/react-with-styles-interface-aphrodite), the CSS output by this interface uses specifiers with varying levels of specificity. This allows for style resolution to be sensitive to the ordering of styles in calls to `css(...)`. However, these extra specifiers should not be overridden.
+
 ### Compile
 
 The styles passed to `withStyles` in the source code are compiled to static CSS by the `compileCSS` function shown below. For convenience, a CLI wrapping `compileCSS` is provided.

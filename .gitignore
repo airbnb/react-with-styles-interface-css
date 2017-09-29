@@ -1,5 +1,5 @@
-/dist/
-/babelCache/
+dist/
+babelCache/
 
 # Logs
 logs

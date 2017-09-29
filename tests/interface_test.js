@@ -9,7 +9,6 @@ const testStyles = {
   iguana: { color: 'red' },
 };
 
-
 describe('create', () => {
   it('returns an object mapping style names to class names', () => {
     const stylesToClasses = create(testStyles);

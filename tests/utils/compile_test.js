@@ -1,11 +1,15 @@
 import { expect } from 'chai';
-import values from 'object.values';
 import ReactDOM from 'react-dom';
-import CSSInterface from '../../src';
+import entries from 'object.entries';
+import values from 'object.values';
+import toDash from 'dashify';
+
+import CSSInterface, { registerMaxSpecificity } from '../../src';
 
 import {
   CSS,
   getCSS,
+  resetCSS,
   noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
@@ -13,7 +17,43 @@ import {
 import { MAX_SPECIFICITY } from '../../src/utils/constants';
 
 describe('getCSS', () => {
-  it('returns CSS', () => {
+  beforeEach(() => {
+    resetCSS();
+  });
+
+  it('returns expected styles', () => {
+    const stylesObject = {
+      primary: {
+        color: 'red',
+        fontSize: '1rem',
+        position: 'fixed',
+      },
+    };
+    getCSS(stylesObject);
+
+    values(stylesObject).forEach((val) => {
+      entries(val).forEach(([styleKey, CSSValue]) => {
+        expect(CSS.includes(`${toDash(styleKey)}:${CSSValue}`)).to.equal(true);
+      });
+    });
+  });
+
+  it('returns all expected classes', () => {
+    const stylesObject = {
+      primary: {
+        color: 'red',
+        fontSize: '1rem',
+        position: 'fixed',
+      },
+    };
+    getCSS(stylesObject);
+
+    Object.keys(stylesObject).forEach((styleName) => {
+      expect(CSS.includes(`.${styleName}`)).to.equal(true);
+    });
+  });
+
+  it('returns default amount of specifiers', () => {
     const stylesObject = {
       primary: {
         color: 'red',
@@ -24,15 +64,50 @@ describe('getCSS', () => {
     getCSS(stylesObject);
 
     // Check all specifiers exist
-    for (let i = 1; i <= MAX_SPECIFICITY; i += 1) {
-      Object.keys(stylesObject).forEach((styleName) => {
+    Object.keys(stylesObject).forEach((styleName) => {
+      for (let i = 1; i <= MAX_SPECIFICITY; i += 1) {
         expect(CSS.includes(`.${styleName}_${i}`.repeat(i))).to.equal(true);
-      });
-    }
+      }
+    });
+  });
 
-    // Check all CSS values exist
-    values(values(stylesObject)).forEach((CSSValue) => {
-      expect(CSS.includes(CSSValue));
+  it('returns custom number of specifiers', () => {
+    const maxSpecificity = 5;
+    registerMaxSpecificity(maxSpecificity);
+
+    const stylesObject = {
+      primary: {
+        color: 'red',
+        fontSize: '1rem',
+        position: 'fixed',
+      },
+    };
+    getCSS(stylesObject);
+
+    // Check all specifiers exist
+    Object.keys(stylesObject).forEach((styleName) => {
+      for (let i = 1; i <= maxSpecificity; i += 1) {
+        expect(CSS.includes(`.${styleName}_${i}`.repeat(i))).to.equal(true);
+      }
+    });
+  });
+
+  it('returns CSS with custom zero specificity', () => {
+    registerMaxSpecificity(0);
+
+    const stylesObject = {
+      primary: {
+        color: 'red',
+        fontSize: '1rem',
+        position: 'fixed',
+      },
+    };
+    getCSS(stylesObject);
+
+    // Check all style names exist
+    Object.keys(stylesObject).forEach((styleName) => {
+      expect(CSS.includes(styleName)).to.equal(true);
+      expect(CSS.includes(`${styleName}_`)).to.equal(false);
     });
   });
 });

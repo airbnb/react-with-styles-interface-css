@@ -49,6 +49,7 @@
     "babel-jest": "^21.2.0",
     "babel-preset-airbnb": "^2.2.3",
     "chai": "^4.0.2",
+    "dashify": "^0.2.2",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",

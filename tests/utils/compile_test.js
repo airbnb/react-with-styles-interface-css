@@ -110,6 +110,35 @@ describe('getCSS', () => {
       expect(CSS.includes(`${styleName}_`)).to.equal(false);
     });
   });
+
+  it('addresses pseudo-selectors', () => {
+    const maxSpecificity = 2;
+    registerMaxSpecificity(2);
+
+    const stylesObject = {
+      primary: {
+        color: 'red',
+        ':hover': {
+          color: 'white',
+        },
+        ':active': {
+          color: 'blue',
+        },
+      },
+    };
+    getCSS(stylesObject);
+
+    entries(stylesObject).forEach(([styleName, styleDef]) => {
+      for (let i = 1; i <= maxSpecificity; i += 1) {
+        entries(styleDef).forEach(([styleKey, styleValue]) => {
+          if (typeof styleValue === 'object') {
+            const className = `.${styleName}_${i}`.repeat(i);
+            expect(CSS).to.contain(`${className}${styleKey}`);
+          }
+        });
+      }
+    });
+  });
 });
 
 describe('prepareCompilationEnvironment', () => {

@@ -24,16 +24,20 @@ let oldDocument;
 let oldReactDOMRender;
 let oldCSSInterfaceCreate;
 
+function resetCSS() {
+  CSS = '';
+}
+
 function getCSS(stylesObject) {
   const sharedState = globalCache.get(GLOBAL_CACHE_KEY) || {};
 
   const styleSheet = StyleSheet.create(stylesObject);
   entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
-    const { namespace = '' } = sharedState;
+    const { namespace = '', maxSpecificity = MAX_SPECIFICITY } = sharedState;
     const className = getClassName(namespace, styleName);
 
     let extendedClassName = `${className}`;
-    for (let i = 1; i <= MAX_SPECIFICITY; i += 1) {
+    for (let i = 1; i <= maxSpecificity; i += 1) {
       const repeatedSpecifier = `.${className}_${i}`.repeat(i);
       extendedClassName += `,${repeatedSpecifier}`;
     }
@@ -81,6 +85,7 @@ function cleanupCompilationEnvironment() {
 export {
   CSS,
   getCSS,
+  resetCSS,
   noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,

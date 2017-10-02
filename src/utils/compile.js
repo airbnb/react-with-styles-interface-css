@@ -30,20 +30,24 @@ function resetCSS() {
 
 function getCSS(stylesObject) {
   const sharedState = globalCache.get(GLOBAL_CACHE_KEY) || {};
+  const { namespace = '', maxSpecificity = MAX_SPECIFICITY } = sharedState;
 
-  const styleSheet = StyleSheet.create(stylesObject);
-  entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
-    const { namespace = '', maxSpecificity = MAX_SPECIFICITY } = sharedState;
-    const className = getClassName(namespace, styleName);
-
-    let extendedClassName = `${className}`;
+  const stylesObjectWithSpecificity = { ...stylesObject };
+  entries(stylesObject).forEach(([styleName, styleDef]) => {
     for (let i = 1; i <= maxSpecificity; i += 1) {
-      const repeatedSpecifier = `.${className}_${i}`.repeat(i);
-      extendedClassName += `,${repeatedSpecifier}`;
+      const repeatedSpecifier =
+        Array.from({ length: i }, () => `${styleName}_${i}`).join('.');
+      stylesObjectWithSpecificity[repeatedSpecifier] = styleDef;
     }
-    // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-    styleSheetObject._name = extendedClassName;
   });
+
+  const styleSheet = StyleSheet.create(stylesObjectWithSpecificity);
+  entries(styleSheet).forEach(([styleName, styleSheetObject]) => {
+    // getClassName removes the aphrodite hash, creating a clean classname
+    // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+    styleSheetObject._name = getClassName(namespace, styleName);
+  });
+
   const { css: CSSInfo } = StyleSheetServer.renderStatic(() => {
     values(styleSheet).forEach((style) => {
       compile(style);

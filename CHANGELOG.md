@@ -1,4 +1,4 @@
-v2.0.0
+v2.0.1
 - Use `module.exports` on default exports
 - Move main to top-level non-built index file
 - Move `registerCSSInterfaceNamespace` and `registerMaxSpecificity` to their own files

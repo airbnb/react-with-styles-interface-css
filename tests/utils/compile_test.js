@@ -4,7 +4,8 @@ import entries from 'object.entries';
 import values from 'object.values';
 import toDash from 'dashify';
 
-import CSSInterface, { registerMaxSpecificity } from '../../src';
+import CSSInterface from '../../src';
+import registerMaxSpecificity from '../../src/utils/registerMaxSpecificity';
 
 import {
   CSS,

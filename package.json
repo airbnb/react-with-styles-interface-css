@@ -6,7 +6,7 @@
   "repository": "airbnb/react-with-styles-interface-css",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
   "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
-  "main": "./",
+  "main": "index.js",
   "bin": {
     "compile-css": "bin/compile-css"
   },

@@ -1,6 +1,5 @@
 dist/
 babelCache/
-bin/
 
 # Logs
 logs

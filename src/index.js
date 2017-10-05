@@ -45,34 +45,4 @@ function resolve(stylesArray) {
   return result;
 }
 
-/**
- * Register a namespace to use for constructing unique class names.
- *
- * CSSInterfaceNamespace {String} The namespace to be used. e.g. Name of the project
- */
-function registerCSSInterfaceNamespace(CSSInterfaceNamespace) {
-  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
-  if (!sharedState) {
-    globalCache.set(GLOBAL_CACHE_KEY, { namespace: CSSInterfaceNamespace });
-  } else {
-    sharedState.namespace = CSSInterfaceNamespace;
-  }
-}
-
-/**
- * Register max specificity for generating CSS
- *
- * maxSpecificity {Integer} max specificity to use for generating stylesheets,
- *   ie how many _N classes get generated
- */
-function registerMaxSpecificity(maxSpecificity) {
-  const sharedState = globalCache.get(GLOBAL_CACHE_KEY);
-  if (!sharedState) {
-    globalCache.set(GLOBAL_CACHE_KEY, { maxSpecificity });
-  } else {
-    sharedState.maxSpecificity = maxSpecificity;
-  }
-}
-
 export default { create, resolve };
-export { registerCSSInterfaceNamespace, registerMaxSpecificity };

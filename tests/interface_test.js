@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import entries from 'object.entries';
-import CSSInterface, { registerCSSInterfaceNamespace } from '../src';
+import CSSInterface from '../src';
 
+import registerCSSInterfaceNamespace from '../src/utils/registerCSSInterfaceNamespace';
 import getClassName from '../src/utils/getClassName';
 
 const { create, resolve } = CSSInterface;

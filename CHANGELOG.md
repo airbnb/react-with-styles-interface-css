@@ -1,3 +1,6 @@
+v2.0.2
+- Fix main entry point
+
 v2.0.1
 - Use `module.exports` on default exports
 - Move main to top-level non-built index file

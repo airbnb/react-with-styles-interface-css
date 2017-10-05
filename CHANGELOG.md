@@ -1,3 +1,8 @@
+v2.0.0
+- Use `module.exports` on default exports
+- Move main to top-level non-built index file
+- Move `registerCSSInterfaceNamespace` and `registerMaxSpecificity` to their own files
+
 v1.1.0
 - Add maxSpecificity customization option
 - Fix pseudoselector logic

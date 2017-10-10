@@ -11,6 +11,10 @@ const testStyles = {
 };
 
 describe('create', () => {
+  afterEach(() => {
+    registerCSSInterfaceNamespace('');
+  });
+
   it('returns an object mapping style names to class names', () => {
     const stylesToClasses = create(testStyles);
     const { length: testStylesLength } = Object.keys(testStyles);
@@ -36,8 +40,6 @@ describe('create', () => {
       const expectedClassName = getClassName(namespace, styleName);
       expect(className).to.equal(expectedClassName);
     });
-
-    registerCSSInterfaceNamespace('');
   });
 });
 
@@ -84,6 +86,5 @@ describe('registerCSSInterfaceNamespace', () => {
     Object.keys(testStyles).forEach((styleName) => {
       expect(stylesToClasses[styleName]).to.equal(`${namespace}__${styleName}`);
     });
-    registerCSSInterfaceNamespace('');
   });
 });

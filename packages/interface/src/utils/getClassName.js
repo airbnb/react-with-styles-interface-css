@@ -6,9 +6,7 @@
  *
  * Return the class name.
  */
-function getClassName(namespace, styleName) {
+export default function getClassName(namespace, styleName) {
   const namespaceSegment = namespace.length > 0 ? `${namespace}__` : '';
   return `${namespaceSegment}${styleName}`;
 }
-
-export default getClassName;

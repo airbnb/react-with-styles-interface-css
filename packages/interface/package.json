@@ -1,0 +1,42 @@
+{
+  "name": "react-with-styles-interface-css",
+  "version": "2.0.2",
+  "description": "Interface for react-with-styles outputting CSS",
+  "repository": "airbnb/react-with-styles-interface-css/tree/master/packages/interface",
+  "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
+  "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && babel src --out-dir dist",
+    "clean": "rimraf dist/",
+    "dev": "npm run build -- --watch",
+    "lint": "eslint .",
+    "jest": "jest",
+    "pretest": "npm run lint",
+    "test:only": "npm run jest",
+    "test": "npm run test:only"
+  },
+  "keywords": [
+    "react-with-styles",
+    "css-in-js",
+    "css"
+  ],
+  "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "chai": "^4.0.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.1",
+    "jest": "^21.2.1",
+    "object.entries": "^1.0.4",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "aphrodite": "^1.2.1",
+    "array-flatten": "^2.1.1",
+    "global-cache": "^1.2.1"
+  }
+}

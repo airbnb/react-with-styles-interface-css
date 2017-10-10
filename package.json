@@ -1,31 +1,21 @@
 {
   "name": "react-with-styles-interface-css",
-  "version": "2.0.2",
+  "private": true,
+  "version": "0.0.1",
   "description": "Interface for react-with-styles outputting CSS",
   "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
-  "repository": "airbnb/react-with-styles-interface-css",
-  "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
-  "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
-  "main": "index.js",
-  "bin": {
-    "compile-css": "bin/compile-css"
-  },
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && babel src --out-dir dist",
+    "build": "lerna run build",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "test:only": "lerna run test:only",
     "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
     "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
-    "clean": "rimraf dist/ stylesheet.css",
-    "dev": "npm run build -- --watch",
-    "jest": "jest",
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test:only": "npm run jest",
-    "test": "npm run test:only",
     "react:clean": "npm uninstall --no-save react react-dom react-addons-test-utils react-test-renderer && rimraf node_modules/react-test-renderer node_modules/react && npm prune",
     "react:14": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14 && npm prune",
     "react:15": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune",
-    "veryclean": "npm run clean && rimraf node_modules/ babelCache/",
     "postversion": "git commit package.json CHANGELOG.md -m \"Version $npm_package_version\" && npm run tag && git push && git push --tags && npm publish",
     "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
     "preversion": "npm run test && npm run check-changelog && npm run check-only-changelog-changed",
@@ -34,39 +24,11 @@
     "version:minor": "npm --no-git-tag-version version minor",
     "version:patch": "npm --no-git-tag-version version patch"
   },
-  "dependencies": {
-    "aphrodite": "^1.2.1",
-    "array-flatten": "^2.1.1",
-    "babel-register": "^6.24.1",
-    "clean-css": "^4.1.4",
-    "global-cache": "^1.2.0",
-    "jsdom": "^11.0.0",
-    "object.entries": "^1.0.4",
-    "object.values": "^1.0.4"
-  },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-jest": "^21.2.0",
-    "babel-preset-airbnb": "^2.2.3",
-    "chai": "^4.0.2",
-    "dashify": "^0.2.2",
-    "enzyme": "^2.8.2",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.6.1",
     "in-publish": "^2.0.0",
-    "jest": "^21.2.1",
+    "lerna": "^2.4.0",
     "react": "^0.14 || ^15.6.0",
     "react-dom": "^0.14 || ^15.6.0",
-    "react-test-renderer": "^0.14 || ^15.5.4",
-    "react-with-styles": "^2.1.0",
-    "rimraf": "^2.6.1",
-    "safe-publish-latest": "^1.1.1",
-    "webpack": "^3.0.0"
-  },
-  "peerDependencies": {
-    "react": "^0.14 || ^15.6.0",
-    "react-dom": "^0.14 || ^15.6.0",
-    "react-with-styles": "^2.1.0"
+    "safe-publish-latest": "^1.1.1"
   }
 }

@@ -4,9 +4,9 @@ import entries from 'object.entries';
 import globalCache from 'global-cache';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
-import CSSInterface from '..';
-import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from './constants';
-import getClassName from './getClassName';
+import CSSInterface from 'react-with-styles-interface-css';
+import { GLOBAL_CACHE_KEY, MAX_SPECIFICITY } from 'react-with-styles-interface-css/dist/utils/constants';
+import getClassName from 'react-with-styles-interface-css/dist/utils/getClassName';
 
 // eslint-disable-next-line import/no-mutable-exports
 let CSS = '';

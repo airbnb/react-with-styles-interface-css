@@ -4,8 +4,9 @@ import entries from 'object.entries';
 import values from 'object.values';
 import toDash from 'dashify';
 
-import CSSInterface from '../../src';
-import registerMaxSpecificity from '../../src/utils/registerMaxSpecificity';
+import CSSInterface from 'react-with-styles-interface-css';
+import registerMaxSpecificity from 'react-with-styles-interface-css/dist/utils/registerMaxSpecificity';
+import { MAX_SPECIFICITY } from 'react-with-styles-interface-css/dist/utils/constants';
 
 import {
   CSS,
@@ -14,8 +15,7 @@ import {
   noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
-} from '../../src/utils/compile';
-import { MAX_SPECIFICITY } from '../../src/utils/constants';
+} from '../src/utils';
 
 describe('getCSS', () => {
   beforeEach(() => {

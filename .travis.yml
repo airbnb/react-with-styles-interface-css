@@ -4,7 +4,6 @@ node_js:
   - "7"
   - "6"
 before_script:
-  - './node_modules/.bin/lerna bootstrap'
   - './node_modules/.bin/lerna run build'
   - 'if [ -n "${REACT-}" ] && [ "${TEST-}" = true ]; then sh install-relevant-react.sh && npm ls >/dev/null; fi'
 script:

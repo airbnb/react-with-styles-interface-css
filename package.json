@@ -6,6 +6,7 @@
   "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
   "license": "MIT",
   "scripts": {
+    "postinstall": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "lint": "lerna run lint",

@@ -7,14 +7,15 @@
   "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && babel src --out-dir dist",
-    "clean": "rimraf dist/",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir dist",
+    "clean": "rimraf dist",
     "dev": "npm run build -- --watch",
     "lint": "eslint .",
     "jest": "jest",
     "pretest": "npm run lint",
-    "test:only": "npm run jest",
-    "test": "npm run test:only"
+    "test": "npm run test:only",
+    "test:only": "npm run jest"
   },
   "keywords": [
     "react-with-styles",

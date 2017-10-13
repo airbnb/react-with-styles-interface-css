@@ -13,24 +13,13 @@
     "pretest": "npm run build",
     "test": "lerna run test",
     "test:only": "lerna run test:only",
-    "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
-    "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
     "react:clean": "npm uninstall --no-save react react-dom react-addons-test-utils react-test-renderer && rimraf node_modules/react-test-renderer node_modules/react && npm prune",
     "react:14": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14 && npm prune",
-    "react:15": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune",
-    "postversion": "git commit package.json CHANGELOG.md -m \"Version $npm_package_version\" && npm run tag && git push && git push --tags && npm publish",
-    "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
-    "preversion": "npm test && npm run check-changelog && npm run check-only-changelog-changed",
-    "tag": "git tag v$npm_package_version",
-    "version:major": "npm --no-git-tag-version version major",
-    "version:minor": "npm --no-git-tag-version version minor",
-    "version:patch": "npm --no-git-tag-version version patch"
+    "react:15": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune"
   },
   "devDependencies": {
-    "in-publish": "^2.0.0",
     "lerna": "^2.4.0",
     "react": "^0.14 || ^15.6.0",
-    "react-dom": "^0.14 || ^15.6.0",
-    "safe-publish-latest": "^1.1.1"
+    "react-dom": "^0.14 || ^15.6.0"
   }
 }

@@ -4,7 +4,7 @@ import {
   CSS,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
-} from './utils/compile';
+} from './utils';
 
 // All further imports/requires will be transpiled
 // eslint-disable-next-line import/first

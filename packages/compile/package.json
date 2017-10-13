@@ -1,0 +1,69 @@
+{
+  "name": "react-with-styles-interface-css-compiler",
+  "version": "0.0.0",
+  "description": "Build step package for generating a static css file to support a react-with-styles project built with the react-with-styles CSS interface",
+  "repository": "airbnb/react-with-styles-interface-css/tree/master/packages/compile",
+  "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",
+  "bugs": "https://github.com/airbnb/react-with-styles-interface-css/issues",
+  "main": "index.js",
+  "bin": {
+    "compile-css": "bin/compile-css"
+  },
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir dist",
+    "clean": "rimraf dist",
+    "dev": "npm run build -- --watch",
+    "lint": "eslint .",
+    "jest": "jest",
+    "pretest": "npm run lint",
+    "test": "npm run test:only",
+    "test:only": "npm run jest",
+    "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
+    "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
+    "tag": "git tag v$npm_package_version",
+    "postversion": "git commit package.json CHANGELOG.md -m \"Version $npm_package_version\" && npm run tag && git push && git push --tags && npm publish",
+    "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
+    "preversion": "npm test && npm run check-changelog && npm run check-only-changelog-changed",
+    "version:major": "npm --no-git-tag-version version major",
+    "version:minor": "npm --no-git-tag-version version minor",
+    "version:patch": "npm --no-git-tag-version version patch"
+  },
+  "keywords": [
+    "react-with-styles",
+    "css-in-js",
+    "css"
+  ],
+  "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "chai": "^4.0.2",
+    "dashify": "^0.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.1",
+    "in-publish": "^2.0.0",
+    "jest": "^21.2.1",
+    "react": "^0.14 || ^15.6.0",
+    "react-dom": "^0.14 || ^15.6.0",
+    "react-with-styles": "^2.2.0",
+    "rimraf": "^2.6.1",
+    "safe-publish-latest": "^1.1.1"
+  },
+  "dependencies": {
+    "aphrodite": "^1.2.4",
+    "babel-register": "^6.26.0",
+    "clean-css": "^4.1.9",
+    "global-cache": "^1.2.1",
+    "jsdom": "^11.3.0",
+    "object.entries": "^1.0.4",
+    "object.values": "^1.0.4",
+    "react-with-styles-interface-css": "*"
+  },
+  "peerDependencies": {
+    "react": "^0.14 || ^15.6.0",
+    "react-dom": "^0.14 || ^15.6.0"
+  }
+}

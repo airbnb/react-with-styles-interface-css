@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 
-import compileCSS from '../../src/compile';
+import compileCSS from '../src/';
 import expectedCSS from './expectedCSS';
 
-const entryPointFilePath = 'tests/entryPoint';
+const entryPointFilePath = 'test/entryPoint';
 
 describe('compileCSS', () => {
   it('returns css', () => {

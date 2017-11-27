@@ -46,9 +46,9 @@
     "eslint-plugin-import": "^2.6.1",
     "in-publish": "^2.0.0",
     "jest": "^21.2.1",
-    "react": "^0.14 || ^15.6.0",
-    "react-dom": "^0.14 || ^15.6.0",
-    "react-with-styles": "^2.2.0",
+    "react": "^0.14 || ^15.6.0 || ^16.1.1",
+    "react-dom": "^0.14 || ^15.6.0 || ^16.1.1",
+    "react-with-styles": "=2.2.0",
     "rimraf": "^2.6.1",
     "safe-publish-latest": "^1.1.1"
   },
@@ -63,7 +63,7 @@
     "react-with-styles-interface-css": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.6.0",
-    "react-dom": "^0.14 || ^15.6.0"
+    "react": "^0.14 || ^15.6.0 || ^16.1.1",
+    "react-dom": "^0.14 || ^15.6.0 || ^16.1.1"
   }
 }

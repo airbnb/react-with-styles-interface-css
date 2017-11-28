@@ -1,6 +1,6 @@
 {
   "name": "react-with-styles-interface-css-compiler",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Build step package for generating a static css file to support a react-with-styles project built with the react-with-styles CSS interface",
   "repository": "airbnb/react-with-styles-interface-css/tree/master/packages/compile",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",

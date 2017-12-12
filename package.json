@@ -18,7 +18,7 @@
     "react:15": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune"
   },
   "devDependencies": {
-    "lerna": "^2.4.0",
+    "lerna": "^2.5.1",
     "react": "^0.14 || ^15.6.0 || ^16.1.1",
     "react-dom": "^0.14 || ^15.6.0 || ^16.1.1"
   }

@@ -1,4 +1,4 @@
-import { from as flatten } from 'array-flatten';
+import flatten from 'array.prototype.flatten';
 import globalCache from 'global-cache';
 
 import { GLOBAL_CACHE_KEY } from './utils/constants';
@@ -35,7 +35,7 @@ function create(stylesObject) {
  * Return an object with optional className and style properties to be spread on a component.
  */
 function resolve(stylesArray) {
-  const flattenedStyles = flatten(stylesArray);
+  const flattenedStyles = flatten(stylesArray, Infinity);
   const { classNames, hasInlineStyles, inlineStyles } = separateStyles(flattenedStyles);
   const specificClassNames = classNames.map((name, index) => `${name} ${name}_${index + 1}`);
   const className = specificClassNames.join(' ');

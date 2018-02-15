@@ -12,12 +12,14 @@ import getClassName from 'react-with-styles-interface-css/dist/utils/getClassNam
 let CSS = '';
 
 let ReactDOM;
+let ReactDOMServer;
 let hasReactDOM = false;
 try {
-  // eslint-disable-next-line global-require
-  ReactDOM = require('react-dom');
+  ReactDOM = require('react-dom'); // eslint-disable-line global-require
+  ReactDOMServer = require('react-dom/server'); // eslint-disable-line global-require
   hasReactDOM = true;
 } catch (err) {} // eslint-disable-line no-empty
+
 
 let oldWindow;
 let oldDocument;
@@ -59,8 +61,6 @@ function getCSS(stylesObject) {
   CSS = newCSS + CSS;
 }
 
-function noopReactDOMRender() {}
-
 function prepareCompilationEnvironment() {
   const { window: jsdomWindow } = new JSDOM();
   const { document: jsdomDocument } = jsdomWindow;
@@ -72,7 +72,7 @@ function prepareCompilationEnvironment() {
 
   if (hasReactDOM) {
     oldReactDOMRender = ReactDOM.render;
-    ReactDOM.render = noopReactDOMRender;
+    ReactDOM.render = ReactDOMServer.renderToString;
   }
 
   oldCSSInterfaceCreate = CSSInterface.create;
@@ -90,7 +90,6 @@ export {
   CSS,
   getCSS,
   resetCSS,
-  noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 };

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 import entries from 'object.entries';
 import values from 'object.values';
 import toDash from 'dashify';
@@ -12,7 +13,6 @@ import {
   CSS,
   getCSS,
   resetCSS,
-  noopReactDOMRender,
   prepareCompilationEnvironment,
   cleanupCompilationEnvironment,
 } from '../src/utils';
@@ -157,7 +157,7 @@ describe('prepareCompilationEnvironment', () => {
 
   it('ensures ReactDOM.render is changed when ReactDOM exists', () => {
     prepareCompilationEnvironment();
-    expect(ReactDOM.render).to.equal(noopReactDOMRender);
+    expect(ReactDOM.render).to.equal(ReactDOMServer.renderToString);
   });
 
   it('ensures CSSInterface.create is changed', () => {

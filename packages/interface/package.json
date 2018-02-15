@@ -1,6 +1,6 @@
 {
   "name": "react-with-styles-interface-css",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Interface for react-with-styles outputting CSS",
   "repository": "airbnb/react-with-styles-interface-css/tree/master/packages/interface",
   "homepage": "https://github.com/airbnb/react-with-styles-interface-css#readme",

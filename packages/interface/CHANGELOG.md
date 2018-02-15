@@ -1,5 +1,8 @@
+v4.0.0
+- [breaking] Add react-with-styles peer dep at ^3.0.0
+
 v3.0.0
-- [Breaking] Create separate packages for interface and compile using lerna
+- [breaking] Create separate packages for interface and compile using lerna
 - [deps] update `aphrodite`
 - [dev deps] update `babel-cli`, `babel-preset-airbnb`, `chai`, `eslint`, `eslint-config-airbnb-base`, `eslint-plugin-import`, `rimraf`
 

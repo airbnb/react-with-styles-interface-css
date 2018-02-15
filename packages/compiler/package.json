@@ -60,7 +60,7 @@
     "jsdom": "^11.3.0",
     "object.entries": "^1.0.4",
     "object.values": "^1.0.4",
-    "react-with-styles-interface-css": "^3.0.0"
+    "react-with-styles-interface-css": "^4.0.0"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.6.0 || ^16.1.1",

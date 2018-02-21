@@ -22,6 +22,10 @@ describe('getCSS', () => {
     resetCSS();
   });
 
+  it('returns an empty object', () => {
+    expect(getCSS({})).to.deep.equal({});
+  });
+
   it('returns expected styles', () => {
     const stylesObject = {
       primary: {

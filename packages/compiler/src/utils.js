@@ -59,6 +59,7 @@ function getCSS(stylesObject) {
 
   // Prepend newCSS so the entry point styles appear at the top of the stylesheet
   CSS = newCSS + CSS;
+  return {};
 }
 
 function prepareCompilationEnvironment() {

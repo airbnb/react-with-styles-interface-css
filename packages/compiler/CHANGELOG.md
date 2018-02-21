@@ -1,3 +1,6 @@
+v1.1.2
+- Return object from getCSS method to support rendering components when building CSS
+
 v1.1.1
 - Patch support for latest versions of RWS
 

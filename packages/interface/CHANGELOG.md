@@ -1,3 +1,6 @@
+v4.0.1
+- [deps] Bump array.prototype.flatten to address webpack build concerns
+
 v4.0.0
 - [breaking] Add react-with-styles peer dep at ^3.0.0
 

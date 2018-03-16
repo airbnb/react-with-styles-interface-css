@@ -9,7 +9,7 @@ function separateStyles(stylesArray) {
   // keys, and we want the best performance in this code because we are in the
   // render path, we are going to do a little bookkeeping ourselves.
   let hasInlineStyles = false;
-  let inlineStyles = {};
+  const inlineStyles = {};
 
   // This is run on potentially every node in the tree when rendering, where
   // performance is critical. Normally we would prefer using `forEach`, but

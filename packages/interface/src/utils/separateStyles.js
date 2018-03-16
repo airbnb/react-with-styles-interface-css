@@ -1,4 +1,4 @@
-import assign from "object-assign";
+import assign from 'object-assign';
 
 // This function takes an array of styles and separates them into styles that
 // are handled by Aphrodite and inline styles.

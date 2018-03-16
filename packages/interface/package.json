@@ -49,7 +49,8 @@
   "dependencies": {
     "aphrodite": "^1.2.5",
     "array.prototype.flatten": "^1.2.1",
-    "global-cache": "^1.2.1"
+    "global-cache": "^1.2.1",
+    "object-assign": "^4.1.1"
   },
   "peerDependencies": {
     "react-with-styles": "^3.0.0"

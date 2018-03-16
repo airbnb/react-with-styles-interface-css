@@ -23,7 +23,7 @@ function separateStyles(stylesArray) {
       if (typeof style === 'string') {
         classNames.push(style);
       } else {
-        inlineStyles = { ...inlineStyles, ...style }
+        inlineStyles = { ...inlineStyles, ...style };
         hasInlineStyles = true;
       }
     }

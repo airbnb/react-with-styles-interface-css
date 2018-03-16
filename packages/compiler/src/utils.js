@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom';
 import values from 'object.values';
 import entries from 'object.entries';
 import globalCache from 'global-cache';
-import arrayFrom from 'array-from'
+import arrayFrom from 'array-from';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
 import CSSInterface from 'react-with-styles-interface-css';

@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.4",
+    "array-from": "^2.1.1",
     "babel-register": "^6.26.0",
     "clean-css": "^4.1.9",
     "global-cache": "^1.2.1",

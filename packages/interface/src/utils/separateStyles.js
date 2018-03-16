@@ -1,3 +1,5 @@
+import assign from 'object-assign';
+
 // This function takes an array of styles and separates them into styles that
 // are handled by Aphrodite and inline styles.
 function separateStyles(stylesArray) {
@@ -23,7 +25,7 @@ function separateStyles(stylesArray) {
       if (typeof style === 'string') {
         classNames.push(style);
       } else {
-        Object.assign(inlineStyles, style);
+        assign(inlineStyles, style);
         hasInlineStyles = true;
       }
     }

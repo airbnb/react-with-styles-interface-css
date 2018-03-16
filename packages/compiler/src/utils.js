@@ -2,6 +2,7 @@ import { JSDOM } from 'jsdom';
 import values from 'object.values';
 import entries from 'object.entries';
 import globalCache from 'global-cache';
+import arrayFrom from 'array-from';
 import { StyleSheetServer, StyleSheet, css as compile } from 'aphrodite/no-important';
 
 import CSSInterface from 'react-with-styles-interface-css';
@@ -38,7 +39,7 @@ function getCSS(stylesObject) {
   entries(stylesObject).forEach(([styleName, styleDef]) => {
     for (let i = 1; i <= maxSpecificity; i += 1) {
       const repeatedSpecifier =
-        Array.from({ length: i }, () => `${styleName}_${i}`).join('.');
+        arrayFrom({ length: i }, () => `${styleName}_${i}`).join('.');
       stylesObjectWithSpecificity[repeatedSpecifier] = styleDef;
     }
   });

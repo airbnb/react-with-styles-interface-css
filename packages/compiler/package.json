@@ -63,6 +63,7 @@
     "react-with-styles-interface-css": "^4.0.0"
   },
   "peerDependencies": {
+    "aphrodite": "^2.2.0",
     "react": "^0.14 || ^15.6.0 || ^16.1.1",
     "react-dom": "^0.14 || ^15.6.0 || ^16.1.1"
   }

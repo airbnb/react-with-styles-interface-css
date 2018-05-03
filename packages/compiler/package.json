@@ -53,7 +53,7 @@
     "safe-publish-latest": "^1.1.1"
   },
   "dependencies": {
-    "aphrodite": "^1.2.4",
+    "aphrodite": "^2.2.0",
     "babel-register": "^6.26.0",
     "clean-css": "^4.1.9",
     "global-cache": "^1.2.1",

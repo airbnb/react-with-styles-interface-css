@@ -47,7 +47,6 @@
     "safe-publish-latest": "^1.1.1"
   },
   "dependencies": {
-    "aphrodite": "^2.2.0",
     "array.prototype.flatten": "^1.2.1",
     "global-cache": "^1.2.1"
   },

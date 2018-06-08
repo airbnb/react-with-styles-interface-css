@@ -1,3 +1,6 @@
+v4.0.2
+- [deps] switch `array.prototype.flatten` to `array.prototype.flat` (#18)
+
 v4.0.1
 - [deps] Bump array.prototype.flatten to address webpack build concerns
 

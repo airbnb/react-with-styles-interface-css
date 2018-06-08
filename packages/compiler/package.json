@@ -53,14 +53,14 @@
     "safe-publish-latest": "^1.1.1"
   },
   "dependencies": {
-    "aphrodite": "^2.2.0",
+    "aphrodite": "^2.2.2",
     "babel-register": "^6.26.0",
-    "clean-css": "^4.1.9",
+    "clean-css": "^4.1.11",
     "global-cache": "^1.2.1",
-    "jsdom": "^11.3.0",
+    "jsdom": "^11.11.0",
     "object.entries": "^1.0.4",
     "object.values": "^1.0.4",
-    "react-with-styles-interface-css": "^4.0.0"
+    "react-with-styles-interface-css": "^4.0.1"
   },
   "peerDependencies": {
     "aphrodite": "^2.2.0",

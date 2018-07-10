@@ -1,3 +1,6 @@
+v4.0.3
+- [deps] Publish patch without `aphrodite` dependency
+
 v4.0.2
 - [deps] switch `array.prototype.flatten` to `array.prototype.flat` (#18)
 

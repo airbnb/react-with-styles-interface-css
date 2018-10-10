@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import compileCSS from '../src/';
+import compileCSS from '../src';
 import expectedCSS from './expectedCSS';
 
 const entryPointFilePath = 'test/entryPoint';

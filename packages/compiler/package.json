@@ -39,18 +39,18 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-airbnb": "^2.4.0",
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "dashify": "^0.2.2",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "in-publish": "^2.0.0",
     "jest": "^21.2.1",
     "react": "^0.14 || ^15.6.0 || ^16.1.1",
     "react-dom": "^0.14 || ^15.6.0 || ^16.1.1",
     "react-with-styles": "^3.1.0",
     "rimraf": "^2.6.2",
-    "safe-publish-latest": "^1.1.1"
+    "safe-publish-latest": "^1.1.2"
   },
   "dependencies": {
     "aphrodite": "^2.2.3",

@@ -37,8 +37,7 @@ function getCSS(stylesObject) {
   const stylesObjectWithSpecificity = { ...stylesObject };
   entries(stylesObject).forEach(([styleName, styleDef]) => {
     for (let i = 1; i <= maxSpecificity; i += 1) {
-      const repeatedSpecifier =
-        Array.from({ length: i }, () => `${styleName}_${i}`).join('.');
+      const repeatedSpecifier = Array.from({ length: i }, () => `${styleName}_${i}`).join('.');
       stylesObjectWithSpecificity[repeatedSpecifier] = styleDef;
     }
   });

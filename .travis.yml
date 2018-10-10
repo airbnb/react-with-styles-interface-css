@@ -1,7 +1,7 @@
 language: node_js
 node_js:
+  - "10"
   - "8"
-  - "7"
   - "6"
 before_script:
   - './node_modules/.bin/lerna run build'
@@ -13,8 +13,13 @@ env:
   global:
     - TEST=true
   matrix:
-    - REACT=0.14
+    - REACT=16.5
+    - REACT=16.4
+    - REACT=16.3
+    - REACT=16.2
+    - REACT=16.1
     - REACT=15
+    - REACT=0.14
 sudo: false
 matrix:
   fast_finish: true

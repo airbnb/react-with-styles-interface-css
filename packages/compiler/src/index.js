@@ -8,7 +8,7 @@ import {
 
 // All further imports/requires will be transpiled
 // eslint-disable-next-line import/first
-import 'babel-register';
+import '@babel/register';
 
 function compileCSS(entryPointFilePath) {
   prepareCompilationEnvironment();

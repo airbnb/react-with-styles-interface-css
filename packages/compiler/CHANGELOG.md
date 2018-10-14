@@ -1,3 +1,7 @@
+v2.0.0
+- [breaking] update to babel 7
+- [deps] update `aphrodite`, `clean-css`, `jsdom`, `react-with-styles-interface-css`
+
 v1.1.2
 - Return object from getCSS method to support rendering components when building CSS
 

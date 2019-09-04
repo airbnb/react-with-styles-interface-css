@@ -1,3 +1,7 @@
+v5.0.0
+- [new][deps] Add `react-with-styles@^4.0.0` to peer dependencies (#20)
+- [breaking][deps] Update to babel 7 (#19)
+
 v4.0.3
 - [deps] Publish patch without `aphrodite` dependency
 

@@ -1,3 +1,7 @@
+v2.1.0
+- [new][deps] Update `react-with-styles-interface-css` ^4.0.1 -> ^5.0.0
+- [dev deps] Update `react-with-styles` ^3.1.0 -> ^4.0.0
+
 v2.0.0
 - [breaking] update to babel 7
 - [deps] update `aphrodite`, `clean-css`, `jsdom`, `react-with-styles-interface-css`

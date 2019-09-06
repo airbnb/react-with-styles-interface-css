@@ -34,17 +34,17 @@
   "author": "Felipe Vargas <felipe@fvgs.ai> (fvgs.ai)",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "babel-preset-airbnb": "^3.0.1",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.0.0",
+    "babel-jest": "^24.9.0",
+    "babel-preset-airbnb": "^4.0.1",
     "chai": "^4.2.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "in-publish": "^2.0.0",
-    "jest": "^23.6.0",
+    "jest": "^24.9.0",
     "object.entries": "^1.0.4",
     "rimraf": "^2.6.2",
     "safe-publish-latest": "^1.1.2"
@@ -54,6 +54,7 @@
     "global-cache": "^1.2.1"
   },
   "peerDependencies": {
+    "@babel/runtime": "^7.0.0",
     "react-with-styles": "^3.0.0 || ^4.0.0"
   }
 }

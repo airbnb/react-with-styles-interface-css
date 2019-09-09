@@ -1,4 +1,4 @@
-Unpublished
+v2.2.0
 - [new][deps] Update `react-with-styles-interface-css` ^5.0.0 -> ^6.0.0
 
 v2.1.0

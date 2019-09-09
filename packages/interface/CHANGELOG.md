@@ -1,3 +1,6 @@
+v6.0.0
+- [breaking][deps] Update to babel 7, and other dep updates (#23)
+
 v5.0.0
 - [new][deps] Add `react-with-styles@^4.0.0` to peer dependencies (#20)
 - [breaking][deps] Update to babel 7 (#19)

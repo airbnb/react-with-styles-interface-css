@@ -17,6 +17,10 @@
     "react:14": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14 && npm prune",
     "react:15": "rimraf node_modules/.bin/npm && npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airbnb/react-with-styles-interface-css.git"
+  },
   "devDependencies": {
     "lerna": "^2.11.0",
     "react": "^0.14 || ^15.6.0 || ^16.1.1",
